@@ -69,7 +69,7 @@ function changetarget()
       --print("match is "..match)
       if Text.talker == "You" and match:title() ~= target then
         send(string.format("pt target changed to %s", target))
-      elseif ndb.iseleusian(match:title()) and not IFF_override then
+      elseif ndb and ndb.iseleusian(match:title()) and not IFF_override then
         cecho("\n<black:red>!!---FRIENDLY TARGET CALLED--!!")
       else
         if not myWarband or myWarband == 0 or not warbandLeaders[myWarband] then
