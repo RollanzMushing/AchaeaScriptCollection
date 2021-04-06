@@ -85,6 +85,9 @@ function changetarget()
         tempTimer(0, [[cecho("\n<ansiRed>Changed target to "..target)]])
       end
     end
+  elseif Text.channel == "party" and string.find(Text.text, [[says, "Cat."]]) and (not ndb or ndb.iseleusian(Text.talker)) then
+    allyTarget = Text.talker
+    tempTimer(0, function() cecho("\n<ansiLightGreen>Ally target: "..allyTarget) end)
   end 
 end
  
