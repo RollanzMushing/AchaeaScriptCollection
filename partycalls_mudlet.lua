@@ -82,7 +82,9 @@ function changetarget()
           end
         end
         target = match:title()
-        tempTimer(0, [[cecho("\n<ansiRed>Changed target to "..target)]])
+        sendGMCP('IRE.Target.Set "' .. target .. '"') -- To set the serverside target for untargetted attacks
+         
+        tempTimer(0, [[cecho("\n<ansiRed>Changed target to "..target)]]) -- Kludge to echo this AFTER the party call
       end
     end
   elseif Text.channel == "party" and string.find(Text.text, [[says, "Cat."]]) and (not ndb or ndb.iseleusian(Text.talker)) then
