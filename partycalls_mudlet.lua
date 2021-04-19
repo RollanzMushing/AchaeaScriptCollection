@@ -82,7 +82,7 @@ function changetarget()
           end
         end
         target = match:title()
-        sendGMCP('IRE.Target.Set "' .. target .. '"') -- To set the serverside target for untargetted attacks
+        sendGMCP(string.format([[IRE.Target.Set "%s"]], target)) -- To set the serverside target for untargetted attacks
          
         tempTimer(0, [[cecho("\n<ansiRed>Changed target to "..target)]]) -- Kludge to echo this AFTER the party call
       end
