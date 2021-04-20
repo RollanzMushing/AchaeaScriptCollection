@@ -81,7 +81,7 @@ function changetarget()
             return
           end
         end
-        target = match:title()
+        setTarget(match:title(), false)
         sendGMCP(string.format([[IRE.Target.Set "%s"]], target)) -- To set the serverside target for untargetted attacks
          
         tempTimer(0, [[cecho("\n<ansiRed>Changed target to "..target)]]) -- Kludge to echo this AFTER the party call
@@ -92,7 +92,19 @@ function changetarget()
     tempTimer(0, function() cecho("\n<ansiLightGreen>Ally target: "..allyTarget) end)
   end 
 end
- 
+
+setTarget = function(newTarget, call, reset)
+  local oldTarget = target 
+  target = string.title(newTarget)
+  if reset or oldTarget ~= target and ak then
+    ak.oresetparse()
+  end
+  
+  if call then
+    send("pt target changed to "..target)
+  end
+end
+
 if not raidLeaderHandler then 
   raidLeaderHandler = registerAnonymousEventHandler("gmcp.Comm.Channel.Text", "getraidleader")
 end
